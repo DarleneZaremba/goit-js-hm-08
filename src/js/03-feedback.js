@@ -23,10 +23,14 @@ function onFormValueEnter(event) {
 
 function checkStorageOnReload() {
   if (localStorage.getItem('feedback-form-state')) {
-    const parsedFormData = JSON.parse(
-      localStorage.getItem('feedback-form-state')
-    );
-    input.value = parsedFormData.email;
-    textarea.value = parsedFormData.message;
+    try {
+      const parsedFormData = JSON.parse(
+        localStorage.getItem('feedback-form-state')
+      );
+      input.value = parsedFormData.email;
+      textarea.value = parsedFormData.message;
+    } catch (err) {
+      console.log(err.name);
+    }
   }
 }
